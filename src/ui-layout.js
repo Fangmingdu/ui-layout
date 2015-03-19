@@ -136,6 +136,10 @@ angular.module('ui.layout', [])
       animationFrameRequested = window.requestAnimationFrame(draw);
     };
 
+    ctrl.triggerResize = function (eve) {
+        $scope.resize(eve);
+    };
+
     /**
      * Returns the min and max values of the ctrl.containers on each side of the container submitted
      * @param container
@@ -437,6 +441,9 @@ angular.module('ui.layout', [])
     return {
       restrict: 'AE',
       controller: 'uiLayoutCtrl',
+      scope: {
+          'resize': '&onResize'
+      },
       link: function(scope, element, attrs, ctrl) {
         scope.$watch(element[0][ctrl.sizeProperties.offsetSize], function() {
           ctrl.updateDisplay();
@@ -615,6 +622,7 @@ angular.module('ui.layout', [])
 
           htmlElement.on('mousemove touchmove', function(event) {
             scope.$apply(angular.bind(ctrl, ctrl.mouseMoveHandler, event));
+            ctrl.triggerResize(event);
           });
           return false;
         });
