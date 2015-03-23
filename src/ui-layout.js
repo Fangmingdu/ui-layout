@@ -121,6 +121,7 @@ angular.module('ui.layout', [])
     ctrl.mouseMoveHandler = function(mouseEvent) {
       var mousePos = mouseEvent[ctrl.sizeProperties.mouseProperty] ||
         (mouseEvent.originalEvent && mouseEvent.originalEvent[ctrl.sizeProperties.mouseProperty]) ||
+		(mouseEvent.originalEvent.touches && mouseEvent.originalEvent.targetTouches[0][ctrl.sizeProperties.mouseProperty]) ||
         (mouseEvent.targetTouches ? mouseEvent.targetTouches[0][ctrl.sizeProperties.mouseProperty] : 0);
 
       lastPos = mousePos - offset($element)[ctrl.sizeProperties.offsetPos];
