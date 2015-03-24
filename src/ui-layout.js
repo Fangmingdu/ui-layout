@@ -380,6 +380,8 @@ angular.module('ui.layout', [])
         if(c.collapsed) {
           c.actualSize = c.size;
           c.size = 0;
+		  //hide the whole container element
+          c.element.css('display','none');
 
           // adds additional space so the splitbar moves to the very end of the container
           // to offset the lost space when converting from percents to pixels
@@ -390,6 +392,8 @@ angular.module('ui.layout', [])
 
         } else {
           c.size = c.actualSize;
+		  //show the whole container element
+          c.element.css('display', 'block');
 
           // adds additional space so the splitbar moves back to the proper position
           // to offset the additional space added when collapsing
