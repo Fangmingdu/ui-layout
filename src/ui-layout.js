@@ -503,7 +503,7 @@ angular.module('ui.layout', [])
         prevChevron.addClass(prevChevronClass);
         afterChevron.addClass(afterChevronClass);
 
-        prevButton.on('click', function() {
+        prevButton.on('click touchend', function() {
           var prevSplitbarBeforeButton, prevSplitbarAfterButton;
           var result = ctrl.toggleBefore(scope.splitbar);
           var previousSplitbar = ctrl.getPreviousSplitbarContainer(scope.splitbar);
@@ -560,7 +560,7 @@ angular.module('ui.layout', [])
           }
         });
 
-        afterButton.on('click', function() {
+        afterButton.on('click touchend', function() {
           var nextSplitbarBeforeButton, nextSplitbarAfterButton;
           var result = ctrl.toggleAfter(scope.splitbar);
           var nextSplitbar = ctrl.getNextSplitbarContainer(scope.splitbar);
