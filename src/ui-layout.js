@@ -443,7 +443,8 @@ angular.module('ui.layout', [])
       restrict: 'AE',
       controller: 'uiLayoutCtrl',
       scope: {
-          'resize': '&onResize'
+          'resize': '&onResize',
+          'ifUpdate': '@'
       },
       link: function(scope, element, attrs, ctrl) {
         scope.$watch(element[0][ctrl.sizeProperties.offsetSize], function() {
@@ -452,7 +453,9 @@ angular.module('ui.layout', [])
 
         function onResize() {
           scope.$apply(function() {
-            ctrl.updateDisplay();
+			  if (scope.ifUpdate === 'true') {
+				ctrl.updateDisplay();
+			  };
           });
         }
 
@@ -654,10 +657,12 @@ angular.module('ui.layout', [])
       require: '^uiLayout',
       scope: {},
 
-      compile: function(element) {
+      compile: function(element, attrs) {
         //TODO: add ability to disable auto-adding a splitbar after the container
-        var splitbar = angular.element('<div ui-splitbar><a><span class="glyphicon"></span></a><a><span class="glyphicon"></span></a></div>');
-        element.after(splitbar);
+        if (attrs.hasSplitbar && attrs.hasSplitbar === 'true') {
+              var splitbar = angular.element('<div ui-splitbar><a><span class="glyphicon"></span></a><a><span class="glyphicon"></span></a></div>');
+              element.after(splitbar);
+          }
 
         return {
           pre: function(scope, element, attrs, ctrl) {
