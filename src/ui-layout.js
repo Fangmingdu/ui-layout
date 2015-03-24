@@ -558,6 +558,8 @@ angular.module('ui.layout', [])
               }
             }
           }
+		  
+		  ctrl.triggerResize();
         });
 
         afterButton.on('click touchend', function() {
@@ -615,6 +617,8 @@ angular.module('ui.layout', [])
               }
             }
           }
+		  
+		  ctrl.triggerResize();
         });
 
         element.on('mousedown touchstart', function(e) {
